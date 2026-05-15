@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隠し字クイズ — KAKUSHI</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Zen+Antique+Solid&family=Share+Tech+Mono&display=swap');
+:root{--ink:#1a1008;--paper:#f5eed8;--paper2:#ede3c4;--red:#c0392b;--gold:#c9a227;--blue:#1a3a5c;--white:#fff8f0;--tile-closed:#2c1f12;--tile-hover:#3d2b18;--green:#1e7a42;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--ink);color:var(--paper);font-family:'Noto Serif JP',serif;min-height:100vh;overflow-x:hidden;position:relative;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 30%,#2a1a0a 0%,transparent 70%),radial-gradient(ellipse 60% 80% at 80% 70%,#1a0a0a 0%,transparent 70%),repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(201,162,39,0.03) 2px,rgba(201,162,39,0.03) 4px);pointer-events:none;z-index:0;}
+#app{position:relative;z-index:1;}
+.screen{display:none;min-height:100vh;}
+.screen.active{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;}
+#title-screen{gap:22px;}
+.title-wrap{text-align:center;}
+.title-ja{font-family:'Zen Antique Solid',serif;font-size:clamp(2.8rem,10vw,6.5rem);color:var(--paper);letter-spacing:0.3em;text-shadow:0 0 40px rgba(201,162,39,0.6),4px 4px 0 var(--red);animation:titleGlow 3s ease-in-out infinite;line-height:1;}
+.title-sub{font-family:'Share Tech Mono',monospace;font-size:clamp(0.75rem,2vw,1rem);color:var(--gold);letter-spacing:0.5em;margin-top:8px;opacity:0.8;}
+@keyframes titleGlow{0%,100%{text-shadow:0 0 40px rgba(201,162,39,0.6),4px 4px 0 var(--red);}50%{text-shadow:0 0 80px rgba(201,162,39,0.9),4px 4px 0 var(--red),0 0 120px rgba(192,57,43,0.4);}}
+.deco-line{width:200px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:8px auto;}
+.menu-grid{display:grid;grid-template-columns:1fr;gap:12px;width:100%;max-width:380px;}
+.btn{font-family:'Noto Serif JP',serif;font-size:1rem;padding:15px 22px;border:none;cursor:pointer;transition:all 0.18s;letter-spacing:0.1em;}
+.btn-primary{background:var(--red);color:var(--white);border:2px solid #e74c3c;box-shadow:4px 4px 0 #8b1e14,inset 0 1px 0 rgba(255,255,255,0.2);}
+.btn-primary:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #8b1e14;}
+.btn-primary:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #8b1e14;}
+.btn-secondary{background:var(--blue);color:var(--paper);border:2px solid #2980b9;box-shadow:4px 4px 0 #0d2236;}
+.btn-secondary:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #0d2236;}
+.btn-gold{background:var(--gold);color:var(--ink);border:2px solid #e6b830;box-shadow:4px 4px 0 #7a5f10;font-weight:700;}
+.btn-gold:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #7a5f10;}
+.btn-gold:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #7a5f10;}
+.btn-dark{background:#2c1f12;color:var(--paper);border:2px solid #5a3e28;box-shadow:4px 4px 0 #0d0906;}
+.btn-dark:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #0d0906;background:#3d2b18;}
+.btn-dark:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #0d0906;}
+.btn-sm{padding:9px 16px;font-size:0.88rem;}
+.btn-xs{padding:6px 11px;font-size:0.8rem;}
+.mode-icon{font-size:1.3em;margin-right:8px;}
+.card{background:rgba(44,31,18,0.88);border:2px solid var(--gold);padding:24px;max-width:480px;width:100%;box-shadow:8px 8px 0 rgba(0,0,0,0.5);}
+.section-title{font-family:'Zen Antique Solid',serif;font-size:1.35rem;color:var(--gold);letter-spacing:0.3em;margin-bottom:18px;text-align:center;border-bottom:1px solid rgba(201,162,39,0.3);padding-bottom:10px;}
+.mode-btn{display:flex;align-items:center;width:100%;padding:13px 16px;margin-bottom:10px;background:rgba(26,16,8,0.6);border:1px solid #5a3e28;color:var(--paper);font-family:'Noto Serif JP',serif;font-size:0.93rem;cursor:pointer;transition:all 0.18s;text-align:left;}
+.mode-btn:hover{background:rgba(201,162,39,0.15);border-color:var(--gold);}
+.mode-btn.selected{background:rgba(201,162,39,0.25);border-color:var(--gold);box-shadow:0 0 10px rgba(201,162,39,0.3);}
+.mode-btn .mode-desc{font-size:0.75rem;opacity:0.6;display:block;margin-top:2px;}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.diff-btn{padding:11px 10px;background:rgba(26,16,8,0.6);border:1px solid #5a3e28;color:var(--paper);font-family:'Noto Serif JP',serif;font-size:0.85rem;cursor:pointer;transition:all 0.18s;text-align:center;line-height:1.35;}
+.diff-btn:hover{background:rgba(201,162,39,0.12);border-color:var(--gold);}
+.diff-btn.selected{background:rgba(201,162,39,0.28);border-color:var(--gold);box-shadow:0 0 8px rgba(201,162,39,0.3);}
+.diff-btn .diff-sub{font-size:0.7rem;opacity:0.55;display:block;margin-top:2px;}
+.type-row{display:flex;gap:8px;margin-bottom:14px;}
+.type-btn{flex:1;padding:10px 6px;background:rgba(26,16,8,0.6);border:1px solid #5a3e28;color:var(--paper);font-family:'Noto Serif JP',serif;font-size:0.88rem;cursor:pointer;transition:all 0.18s;text-align:center;line-height:1.3;}
+.type-btn:hover{border-color:var(--paper2);}
+.type-btn.selected{background:rgba(192,57,43,0.3);border-color:var(--red);}
+.label-sm{font-size:0.78rem;color:var(--gold);margin-bottom:6px;display:block;letter-spacing:0.05em;}
+.room-code{font-family:'Share Tech Mono',monospace;font-size:2.8rem;color:var(--gold);text-align:center;letter-spacing:0.3em;padding:18px;background:rgba(0,0,0,0.4);border:1px solid #5a3e28;margin:14px 0;text-shadow:0 0 20px rgba(201,162,39,0.5);}
+.input-field{width:100%;background:rgba(0,0,0,0.5);border:1px solid #5a3e28;border-top-color:#3a2518;color:var(--paper);font-family:'Share Tech Mono',monospace;font-size:1.3rem;padding:13px 15px;letter-spacing:0.2em;text-align:center;outline:none;transition:border-color 0.2s;}
+.input-field:focus{border-color:var(--gold);}
+.players-list{margin:12px 0;}
+.player-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(0,0,0,0.3);border-left:3px solid var(--gold);margin-bottom:6px;font-size:0.88rem;}
+.player-dot{width:9px;height:9px;border-radius:50%;background:var(--gold);}
+.player-dot.red{background:var(--red);}
+#game-screen{padding:10px;gap:8px;justify-content:flex-start;}
+.game-header{width:100%;max-width:760px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.game-info-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.info-chip{background:rgba(44,31,18,0.8);border:1px solid #5a3e28;padding:4px 11px;font-size:0.78rem;color:var(--paper2);font-family:'Share Tech Mono',monospace;letter-spacing:0.07em;}
+.info-chip strong{color:var(--gold);}
+.turn-indicator{font-family:'Zen Antique Solid',serif;font-size:0.9rem;padding:4px 13px;letter-spacing:0.15em;}
+.grid-wrap{position:relative;border:3px solid var(--gold);box-shadow:0 0 0 2px var(--ink),0 0 0 4px #5a3e28,6px 6px 0 rgba(0,0,0,0.6);width:min(90vw,480px);height:min(90vw,480px);flex-shrink:0;}
+#hidden-content{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--paper);z-index:0;overflow:hidden;user-select:none;}
+#hidden-kanji{font-family:'Zen Antique Solid',serif;font-size:min(80vw,440px);line-height:1;color:var(--ink);font-weight:900;}
+#grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);gap:0;z-index:1;}
+#multi-grids-outer{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;max-width:800px;}
+#multi-grids-row{display:flex;gap:8px;align-items:flex-start;justify-content:center;flex-wrap:nowrap;}
+.char-grid-block{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.char-grid-label{font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--paper2);letter-spacing:0.08em;}
+.char-grid-wrap{position:relative;border:2px solid var(--gold);box-shadow:0 0 0 1px var(--ink),0 0 0 2px #5a3e28,4px 4px 0 rgba(0,0,0,0.5);flex-shrink:0;}
+.char-grid-wrap.done-char{border-color:#27ae60;box-shadow:0 0 0 1px var(--ink),0 0 0 2px #27ae60,0 0 12px rgba(39,174,96,0.4),4px 4px 0 rgba(0,0,0,0.4);}
+.char-hidden{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--paper);z-index:0;overflow:hidden;user-select:none;}
+.char-hidden span{font-family:'Zen Antique Solid',serif;line-height:1;color:var(--ink);font-weight:900;}
+.char-grid-el{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);gap:0;z-index:1;}
+.multi-progress-row{display:flex;gap:4px;align-items:center;}
+.char-badge{padding:3px 10px;background:rgba(201,162,39,0.15);border:1px solid #5a3e28;color:var(--paper2);font-family:'Zen Antique Solid',serif;font-size:1.1rem;min-width:2em;text-align:center;transition:all 0.3s;}
+.char-badge.revealed{background:rgba(201,162,39,0.4);border-color:var(--gold);color:var(--gold);text-shadow:0 0 8px rgba(201,162,39,0.6);}
+.char-open-count{font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--paper2);opacity:0.7;}
+.tile{position:relative;overflow:hidden;}
+.tile.closed{background:var(--tile-closed);box-shadow:inset 1px 1px 0 rgba(255,255,255,0.07),inset -1px -1px 0 rgba(0,0,0,0.45);cursor:pointer;transition:background 0.1s;}
+.tile.closed:hover{background:var(--tile-hover);}
+.tile.open{background:transparent;cursor:default;box-shadow:none;}
+.tile.closed .tile-num{position:absolute;bottom:2px;right:2px;font-family:'Share Tech Mono',monospace;font-size:0.42rem;color:rgba(201,162,39,0.22);pointer-events:none;line-height:1;}
+.tile.flipping{animation:tileFlip 0.28s ease-in-out;}
+@keyframes tileFlip{0%{transform:scaleX(1);}50%{transform:scaleX(0);}100%{transform:scaleX(1);}}
+.tile.just-opened{animation:openGlow 0.4s ease-out forwards;}
+@keyframes openGlow{0%{filter:brightness(2.5);}100%{filter:brightness(1);}}
+.timer-bar-wrap{width:100%;max-width:760px;height:5px;background:rgba(0,0,0,0.4);border:1px solid #3a2518;overflow:hidden;}
+.timer-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--red));transition:width 1s linear;width:100%;}
+.score-board{width:100%;max-width:760px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.score-card{flex:1;min-width:110px;background:rgba(44,31,18,0.7);border:2px solid #5a3e28;padding:7px 11px;text-align:center;position:relative;transition:border-color 0.3s;}
+.score-card.active{border-color:var(--gold);box-shadow:0 0 12px rgba(201,162,39,0.3);}
+.score-card.active::before{content:'▶';position:absolute;top:4px;left:6px;color:var(--gold);font-size:0.6rem;}
+.score-name{font-size:0.76rem;color:var(--paper2);margin-bottom:3px;}
+.score-val{font-family:'Share Tech Mono',monospace;font-size:1.4rem;color:var(--gold);}
+.answer-area{width:100%;max-width:760px;display:flex;gap:8px;align-items:stretch;}
+.answer-input{flex:1;background:rgba(0,0,0,0.6);border:2px solid #5a3e28;border-top-color:#3a2518;color:var(--paper);font-family:'Zen Antique Solid',serif;font-size:1.35rem;padding:10px 13px;outline:none;letter-spacing:0.15em;transition:border-color 0.2s,box-shadow 0.2s;}
+.answer-input:focus{border-color:var(--gold);box-shadow:0 0 10px rgba(201,162,39,0.3);}
+.answer-input::placeholder{color:rgba(245,238,216,0.3);font-size:0.95rem;}
+.submit-btn{padding:10px 20px;font-size:0.95rem;white-space:nowrap;}
+#result-screen{gap:20px;}
+.result-card{background:rgba(44,31,18,0.92);border:3px solid var(--gold);padding:30px;max-width:460px;width:100%;text-align:center;box-shadow:10px 10px 0 rgba(0,0,0,0.6);}
+.result-winner{font-family:'Zen Antique Solid',serif;font-size:1.9rem;color:var(--gold);letter-spacing:0.3em;text-shadow:0 0 20px rgba(201,162,39,0.6);margin-bottom:8px;}
+.result-answer-display{font-family:'Zen Antique Solid',serif;font-size:clamp(2rem,8vw,3.2rem);color:var(--paper);margin:14px 0;text-shadow:4px 4px 0 var(--red);letter-spacing:0.1em;}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:100;overflow:hidden;}
+.confetti-piece{position:absolute;top:-20px;animation:confettiFall linear forwards;}
+@keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:0;}}
+.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--red);color:white;padding:10px 24px;font-family:'Noto Serif JP',serif;font-size:0.95rem;letter-spacing:0.1em;z-index:999;box-shadow:4px 4px 0 #8b1e14;transition:transform 0.3s ease;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.success{background:#27ae60;box-shadow:4px 4px 0 #1a7a42;}
+.loading{display:flex;flex-direction:column;align-items:center;gap:13px;color:var(--paper2);font-family:'Share Tech Mono',monospace;letter-spacing:0.2em;font-size:0.88rem;}
+.loading-spin{width:42px;height:42px;border:3px solid rgba(201,162,39,0.2);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.hidden{display:none!important;}
+.flex-gap{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.mt-8{margin-top:8px;}.mt-14{margin-top:14px;}.mt-18{margin-top:18px;}
+.text-center{text-align:center;}
+.text-sm{font-size:0.83rem;opacity:0.7;}
+.text-gold{color:var(--gold);}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- TITLE -->
+<div id="title-screen" class="screen active">
+  <div class="title-wrap">
+    <div class="title-ja">隠し字</div>
+    <div class="deco-line"></div>
+    <div class="title-sub">K A K U S H I &nbsp; Q U I Z</div>
+  </div>
+  <div class="menu-grid">
+    <button class="btn btn-primary"   onclick="startFlow('solo')"><span class="mode-icon">⚡</span>ひとりプレイ（タイムアタック）</button>
+    <button class="btn btn-secondary" onclick="startFlow('host')"><span class="mode-icon">🏯</span>ルームを作る（ホスト）</button>
+    <button class="btn btn-dark"      onclick="showJoin()">       <span class="mode-icon">⛩</span>ルームに入る（ゲスト）</button>
+  </div>
+  <div class="text-sm text-center mt-8" style="color:var(--paper2);">漢字・熟語・四字熟語クイズゲーム</div>
+</div>
+
+<!-- QUIZ TYPE -->
+<div id="type-screen" class="screen">
+  <div class="card">
+    <div class="section-title">出題タイプ</div>
+    <button class="mode-btn selected" id="qt-kanji"  onclick="selectQuizType('kanji')">
+      <span class="mode-icon">一</span><span>漢字モード<span class="mode-desc">1文字の漢字を8×8グリッドから当てる</span></span>
+    </button>
+    <button class="mode-btn" id="qt-jukugo" onclick="selectQuizType('jukugo')">
+      <span class="mode-icon">熟</span><span>熟語モード（2〜3文字）<span class="mode-desc">各文字に8×8グリッド。全グリッドが同時に開く</span></span>
+    </button>
+    <button class="mode-btn" id="qt-yoji" onclick="selectQuizType('yoji')">
+      <span class="mode-icon">四</span><span>四字熟語モード<span class="mode-desc">4文字グリッドが同時に開く。漢検レベル別</span></span>
+    </button>
+    <div class="flex-gap mt-18">
+      <button class="btn btn-dark btn-sm" onclick="showScreen('title-screen')">戻る</button>
+      <button class="btn btn-gold btn-sm" onclick="goToDifficulty()" style="flex:1;">次へ →</button>
+    </div>
+  </div>
+</div>
+
+<!-- DIFFICULTY -->
+<div id="diff-screen" class="screen">
+  <div class="card">
+    <div class="section-title" id="diff-title">難易度選択</div>
+    <div id="diff-content"></div>
+    <div class="flex-gap mt-18">
+      <button class="btn btn-dark btn-sm" onclick="showScreen('type-screen')">戻る</button>
+      <button class="btn btn-gold btn-sm" onclick="goToFlipMode()" style="flex:1;">次へ →</button>
+    </div>
+  </div>
+</div>
+
+<!-- FLIP MODE -->
+<div id="flip-screen" class="screen">
+  <div class="card">
+    <div class="section-title">ゲームモード</div>
+    <button class="mode-btn selected" id="mode-random" onclick="selectFlipMode('random')">
+      <span class="mode-icon">🎲</span><span>ランダムフリップ<span class="mode-desc">一定時間ごとに自動でマスが開く</span></span>
+    </button>
+    <button class="mode-btn" id="mode-select" onclick="selectFlipMode('select')">
+      <span class="mode-icon">🎯</span><span>セレクトフリップ<span class="mode-desc">交互にマスを選んで開ける</span></span>
+    </button>
+    <div id="interval-row">
+      <span class="label-sm" style="margin-top:10px;">▍ フリップ間隔</span>
+      <div class="type-row">
+        <button class="type-btn"          id="int-1" onclick="selectInterval(1000)">1秒</button>
+        <button class="type-btn selected" id="int-2" onclick="selectInterval(2000)">2秒</button>
+        <button class="type-btn"          id="int-3" onclick="selectInterval(3500)">3.5秒</button>
+        <button class="type-btn"          id="int-5" onclick="selectInterval(5000)">5秒</button>
+      </div>
+    </div>
+    <div class="flex-gap mt-18">
+      <button class="btn btn-dark btn-sm" onclick="showScreen('diff-screen')">戻る</button>
+      <button class="btn btn-gold btn-sm" onclick="confirmSettings()" style="flex:1;">決定 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ROOM -->
+<div id="room-screen" class="screen">
+  <div class="card">
+    <div class="section-title" id="room-title">準備中...</div>
+    <div id="room-content"><div class="loading"><div class="loading-spin"></div><span>データ取得中...</span></div></div>
+    <div class="flex-gap mt-14" id="room-actions" style="display:none;">
+      <button class="btn btn-dark btn-sm" onclick="showScreen('title-screen')">キャンセル</button>
+      <button class="btn btn-gold btn-sm" id="room-start-btn" onclick="startGameFromRoom()">ゲーム開始 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- GAME -->
+<div id="game-screen" class="screen">
+  <div class="game-header">
+    <div class="game-info-bar">
+      <div class="info-chip"><strong id="mode-label">--</strong></div>
+      <div class="info-chip">開 <strong id="open-count">0</strong>/<strong id="open-total">64</strong></div>
+      <div class="info-chip" id="timer-chip" style="display:none">残 <strong id="timer-label">--</strong>s</div>
+      <div class="info-chip"><strong id="diff-label">--</strong></div>
+    </div>
+    <div id="turn-display" class="turn-indicator btn btn-dark" style="display:none;"></div>
+    <button class="btn btn-dark btn-xs" onclick="giveUp()">降参</button>
+  </div>
+  <div class="score-board hidden" id="score-board"></div>
+  <div class="timer-bar-wrap hidden" id="timer-bar-wrap"><div class="timer-bar" id="timer-bar"></div></div>
+
+  <div class="grid-wrap hidden" id="kanji-grid-wrap">
+    <div id="hidden-content"><div id="hidden-kanji">？</div></div>
+    <div id="grid"></div>
+  </div>
+
+  <div class="hidden" id="multi-grids-outer">
+    <div class="multi-progress-row" id="multi-progress"></div>
+    <div id="multi-grids-row"></div>
+  </div>
+
+  <div class="answer-area">
+    <input class="answer-input" id="answer-input" type="text" placeholder="正解を入力..." autocomplete="off" maxlength="20"/>
+    <button class="btn btn-primary submit-btn" onclick="submitAnswer()">回答</button>
+  </div>
+  <div class="text-sm text-center" id="answer-hint" style="color:var(--paper2);min-height:1.2em;"></div>
+</div>
+
+<!-- RESULT -->
+<div id="result-screen" class="screen">
+  <div class="confetti" id="confetti"></div>
+  <div class="result-card">
+    <div class="result-winner" id="result-winner-text">🎊 正解！</div>
+    <div class="result-answer-display" id="result-answer-display">-</div>
+    <div class="text-sm text-center" id="result-sub" style="color:var(--paper2);margin-bottom:18px;"></div>
+    <div class="flex-gap">
+      <button class="btn btn-gold btn-sm" onclick="restartGame()">もう一度</button>
+      <button class="btn btn-dark btn-sm" onclick="showScreen('title-screen')">タイトルへ</button>
+    </div>
+  </div>
+</div>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="words.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
