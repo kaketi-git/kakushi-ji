@@ -15,6 +15,11 @@ const io     = new Server(server, {
 // 静的ファイル配信
 app.use(express.static(path.join(__dirname, 'public')));
 
+// words.js はルートにあるため個別に配信
+app.get('/words.js', (req, res) => {
+  res.sendFile(path.join(__dirname, 'words.js'));
+});
+
 // ── ルーム管理 ──────────────────────────────────────────────
 // rooms[roomCode] = {
 //   code, hostId, players: [{id, name, score, socketId}],
@@ -43,7 +48,7 @@ function getRoomBySocket(socketId) {
 // ── 単語DB（サーバー側でも保持して改ざん防止） ──────────────
 // words.jsと同じデータをここに埋め込む（抜粋版 — 実際には同ファイルをrequireしても良い）
 // ここでは words.js を public/ から読み込む代わりにインラインで定義
-const WORD_POOLS = require('./worddata');
+const WORD_POOLS = require('./words');
 
 function pickWord(quizType, difficulty, recentAnswers) {
   const db = WORD_POOLS[quizType];
