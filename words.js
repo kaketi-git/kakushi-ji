@@ -58,8 +58,10 @@ const YOJI_DB = {
 };
 YOJI_DB.all = Object.keys(YOJI_DB).flatMap(k => YOJI_DB[k]);
 
-module.exports = {
-  kanji:  KANJI_DB,
-  jukugo: JUKUGO_DB,
-  yoji:   YOJI_DB,
-};
+if (typeof module !== 'undefined') {
+  module.exports = {
+    kanji:  KANJI_DB,
+    jukugo: JUKUGO_DB,
+    yoji:   YOJI_DB,
+  };
+}

@@ -15,11 +15,6 @@ const io     = new Server(server, {
 // 静的ファイル配信
 app.use(express.static(path.join(__dirname, 'public')));
 
-// words.js はルートにあるため個別に配信
-app.get('/words.js', (req, res) => {
-  res.sendFile(path.join(__dirname, 'words.js'));
-});
-
 // ── ルーム管理 ──────────────────────────────────────────────
 // rooms[roomCode] = {
 //   code, hostId, players: [{id, name, score, socketId}],
