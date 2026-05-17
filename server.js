@@ -43,7 +43,7 @@ function getRoomBySocket(socketId) {
 // ── 単語DB（サーバー側でも保持して改ざん防止） ──────────────
 // words.jsと同じデータをここに埋め込む（抜粋版 — 実際には同ファイルをrequireしても良い）
 // ここでは words.js を public/ から読み込む代わりにインラインで定義
-const WORD_POOLS = require('./words');
+const WORD_POOLS = require('./worddata');
 
 function pickWord(quizType, difficulty, recentAnswers) {
   const db = WORD_POOLS[quizType];
@@ -224,7 +224,6 @@ function startRound(room) {
     totalRounds: room.settings.totalRounds,
     quizType: room.settings.quizType,
     charCount: n,
-    charList: room.charList,
     scores: room.players.map(p => ({ id: p.id, name: p.name, score: p.score })),
     timeLeft: timeSec,
     settings: room.settings,
