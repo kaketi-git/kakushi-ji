@@ -30,6 +30,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .btn-primary{background:var(--red);color:var(--white);border:2px solid #e74c3c;box-shadow:4px 4px 0 #8b1e14;}
 .btn-primary:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #8b1e14;}
 .btn-primary:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #8b1e14;}
+.btn-secondary{background:var(--blue);color:var(--paper);border:2px solid #2980b9;box-shadow:4px 4px 0 #0d2236;}
+.btn-secondary:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #0d2236;}
 .btn-gold{background:var(--gold);color:var(--ink);border:2px solid #e6b830;box-shadow:4px 4px 0 #7a5f10;font-weight:700;}
 .btn-gold:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #7a5f10;}
 .btn-gold:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #7a5f10;}
@@ -44,10 +46,9 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 .card{background:rgba(44,31,18,0.88);border:2px solid var(--gold);padding:24px;max-width:480px;width:100%;box-shadow:8px 8px 0 rgba(0,0,0,0.5);}
 .section-title{font-family:'Zen Antique Solid',serif;font-size:1.35rem;color:var(--gold);letter-spacing:0.3em;margin-bottom:18px;text-align:center;border-bottom:1px solid rgba(201,162,39,0.3);padding-bottom:10px;}
-
 .mode-btn{display:flex;align-items:center;width:100%;padding:12px 15px;margin-bottom:9px;background:rgba(26,16,8,0.6);border:1px solid #5a3e28;color:var(--paper);font-family:'Noto Serif JP',serif;font-size:0.92rem;cursor:pointer;transition:all 0.18s;text-align:left;}
 .mode-btn:hover{background:rgba(201,162,39,0.15);border-color:var(--gold);}
-.mode-btn.selected{background:rgba(201,162,39,0.25);border-color:var(--gold);box-shadow:0 0 10px rgba(201,162,39,0.3);}
+.mode-btn.selected{background:rgba(201,162,39,0.25);border-color:var(--gold);}
 .mode-btn .mode-desc{font-size:0.74rem;opacity:0.6;display:block;margin-top:2px;}
 .diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:13px;}
 .diff-btn{padding:10px 8px;background:rgba(26,16,8,0.6);border:1px solid #5a3e28;color:var(--paper);font-family:'Noto Serif JP',serif;font-size:0.83rem;cursor:pointer;transition:all 0.18s;text-align:center;line-height:1.3;}
@@ -60,7 +61,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .type-btn.selected{background:rgba(192,57,43,0.3);border-color:var(--red);}
 .label-sm{font-size:0.76rem;color:var(--gold);margin-bottom:5px;display:block;}
 
-/* ROOM */
 .room-code-display{font-family:'Share Tech Mono',monospace;font-size:3rem;color:var(--gold);text-align:center;letter-spacing:0.4em;padding:18px;background:rgba(0,0,0,0.4);border:2px solid var(--gold);margin:14px 0;text-shadow:0 0 20px rgba(201,162,39,0.5);}
 .input-field{width:100%;background:rgba(0,0,0,0.5);border:1px solid #5a3e28;color:var(--paper);font-family:'Share Tech Mono',monospace;font-size:1.4rem;padding:13px 15px;letter-spacing:0.3em;text-align:center;outline:none;transition:border-color 0.2s;}
 .input-field:focus{border-color:var(--gold);}
@@ -81,23 +81,19 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .info-chip{background:rgba(44,31,18,0.8);border:1px solid #5a3e28;padding:4px 10px;font-size:0.77rem;color:var(--paper2);font-family:'Share Tech Mono',monospace;}
 .info-chip strong{color:var(--gold);}
 .info-chip.warn strong{color:var(--red);}
-
-/* SCOREBOARD */
 .match-scores{width:100%;max-width:780px;display:flex;gap:8px;}
-.score-card{flex:1;background:rgba(44,31,18,0.75);border:2px solid #5a3e28;padding:8px 12px;text-align:center;transition:border-color 0.3s,box-shadow 0.3s;}
+.score-card{flex:1;background:rgba(44,31,18,0.75);border:2px solid #5a3e28;padding:8px 12px;text-align:center;transition:border-color 0.3s;}
 .score-card.me{border-color:var(--gold);box-shadow:0 0 10px rgba(201,162,39,0.3);}
 .score-card.opponent{border-color:var(--red);}
 .score-card-name{font-size:0.78rem;color:var(--paper2);margin-bottom:3px;}
 .score-card-pts{font-family:'Share Tech Mono',monospace;font-size:1.6rem;color:var(--gold);}
-.round-indicator{font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--paper2);text-align:center;letter-spacing:0.15em;}
+.round-indicator{font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--paper2);text-align:center;letter-spacing:0.1em;}
 
-/* GRID */
+/* GRIDS */
 .grid-wrap{position:relative;border:3px solid var(--gold);box-shadow:0 0 0 2px var(--ink),0 0 0 4px #5a3e28,6px 6px 0 rgba(0,0,0,0.6);width:min(90vw,480px);height:min(90vw,480px);flex-shrink:0;}
 #hidden-content{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--paper);z-index:0;overflow:hidden;user-select:none;}
 #hidden-kanji{font-family:'Zen Antique Solid',serif;font-size:min(80vw,440px);line-height:1;color:var(--ink);font-weight:900;}
 #grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);gap:0;z-index:1;}
-
-/* MULTI GRIDS */
 #multi-grids-outer{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;max-width:800px;}
 .multi-progress-row{display:flex;gap:4px;}
 .char-badge{padding:3px 10px;background:rgba(201,162,39,0.15);border:1px solid #5a3e28;color:var(--paper2);font-family:'Zen Antique Solid',serif;font-size:1.1rem;min-width:2em;text-align:center;transition:all 0.3s;}
@@ -123,32 +119,27 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .tile.just-opened{animation:openGlow 0.4s ease-out forwards;}
 @keyframes openGlow{0%{filter:brightness(2.5);}100%{filter:brightness(1);}}
 
-/* TIMER */
 .timer-bar-wrap{width:100%;max-width:780px;height:5px;background:rgba(0,0,0,0.4);border:1px solid #3a2518;overflow:hidden;}
 .timer-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--red));transition:width 1s linear;width:100%;}
 
-/* ANSWER */
 .answer-area{width:100%;max-width:780px;display:flex;gap:8px;align-items:stretch;}
 .answer-input{flex:1;background:rgba(0,0,0,0.6);border:2px solid #5a3e28;border-top-color:#3a2518;color:var(--paper);font-family:'Zen Antique Solid',serif;font-size:1.3rem;padding:10px 13px;outline:none;letter-spacing:0.15em;transition:border-color 0.2s;}
 .answer-input:focus{border-color:var(--gold);box-shadow:0 0 10px rgba(201,162,39,0.3);}
 .answer-input::placeholder{color:rgba(245,238,216,0.3);font-size:0.92rem;}
-.answer-input:disabled{opacity:0.4;cursor:not-allowed;}
 .submit-btn{padding:10px 20px;font-size:0.95rem;white-space:nowrap;}
 
-/* OVERLAY — round end / match end */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;}
-.overlay-card{background:rgba(44,31,18,0.97);border:3px solid var(--gold);padding:30px;max-width:440px;width:100%;text-align:center;box-shadow:12px 12px 0 rgba(0,0,0,0.7);}
+/* OVERLAY */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.78);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;}
+.overlay-card{background:rgba(44,31,18,0.97);border:3px solid var(--gold);padding:28px;max-width:440px;width:100%;text-align:center;box-shadow:12px 12px 0 rgba(0,0,0,0.7);}
 .overlay-title{font-family:'Zen Antique Solid',serif;font-size:1.8rem;color:var(--gold);letter-spacing:0.3em;margin-bottom:10px;}
 .overlay-answer{font-family:'Zen Antique Solid',serif;font-size:2.8rem;color:var(--paper);margin:12px 0;text-shadow:4px 4px 0 var(--red);}
-.overlay-sub{font-size:0.9rem;color:var(--paper2);margin-bottom:16px;}
+.overlay-sub{font-size:0.88rem;color:var(--paper2);margin-bottom:14px;}
 .round-scores-row{display:flex;gap:8px;margin:12px 0;}
 .rs-card{flex:1;background:rgba(0,0,0,0.4);border:1px solid #5a3e28;padding:8px;text-align:center;}
 .rs-card.winner{border-color:var(--gold);background:rgba(201,162,39,0.2);}
-.rs-name{font-size:0.78rem;color:var(--paper2);margin-bottom:3px;}
+.rs-name{font-size:0.76rem;color:var(--paper2);margin-bottom:3px;}
 .rs-pts{font-family:'Share Tech Mono',monospace;font-size:1.5rem;color:var(--gold);}
-.rs-pts.add{color:#27ae60;}
-
-/* MATCH END */
+.rs-add{font-family:'Share Tech Mono',monospace;font-size:0.9rem;color:#27ae60;}
 .match-winner-banner{font-family:'Zen Antique Solid',serif;font-size:2.2rem;color:var(--gold);text-shadow:0 0 30px rgba(201,162,39,0.7);margin-bottom:12px;animation:titleGlow 2s ease-in-out infinite;}
 .final-scores{display:flex;gap:8px;margin:14px 0;}
 .fs-card{flex:1;background:rgba(0,0,0,0.4);border:2px solid #5a3e28;padding:12px;text-align:center;}
@@ -168,7 +159,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .toast.success{background:#27ae60;box-shadow:4px 4px 0 #1a7a42;}
 .toast.info{background:var(--blue);box-shadow:4px 4px 0 #0d2236;}
 
-/* LOADING */
 .loading{display:flex;flex-direction:column;align-items:center;gap:13px;color:var(--paper2);font-family:'Share Tech Mono',monospace;letter-spacing:0.2em;font-size:0.88rem;}
 .loading-spin{width:42px;height:42px;border:3px solid rgba(201,162,39,0.2);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -192,36 +182,65 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="title-sub">K A K U S H I &nbsp; Q U I Z</div>
   </div>
   <div class="menu-grid">
-    <button class="btn btn-primary" onclick="showCreate()"><span class="mode-icon">🏯</span>ルームを作る</button>
-    <button class="btn btn-dark"    onclick="showJoin()">  <span class="mode-icon">⛩</span>ルームに入る</button>
+    <button class="btn btn-primary"   onclick="showSoloSetup()"><span class="mode-icon">⚡</span>ひとりプレイ</button>
+    <button class="btn btn-secondary" onclick="showCreate()">   <span class="mode-icon">🏯</span>ルームを作る（対戦）</button>
+    <button class="btn btn-dark"      onclick="showJoin()">     <span class="mode-icon">⛩</span>ルームに入る（対戦）</button>
   </div>
   <div id="conn-status" class="text-sm text-center mt-8" style="color:var(--paper2);">接続中...</div>
+</div>
+
+<!-- SOLO SETUP -->
+<div id="solo-screen" class="screen">
+  <div class="card">
+    <div class="section-title">ひとりプレイ設定</div>
+    <span class="label-sm">▍ 出題タイプ</span>
+    <div class="type-row">
+      <button class="type-btn selected" id="sq-kanji"  onclick="selSoloQt('kanji')">漢字</button>
+      <button class="type-btn"          id="sq-jukugo" onclick="selSoloQt('jukugo')">熟語</button>
+      <button class="type-btn"          id="sq-yoji"   onclick="selSoloQt('yoji')">四字熟語</button>
+    </div>
+    <span class="label-sm">▍ 難易度</span>
+    <div id="solo-diff-area"></div>
+    <span class="label-sm">▍ フリップモード</span>
+    <div class="type-row">
+      <button class="type-btn selected" id="sf-random" onclick="selSoloFlip('random')">🎲 ランダム</button>
+      <button class="type-btn"          id="sf-select" onclick="selSoloFlip('select')">🎯 セレクト</button>
+    </div>
+    <div id="solo-interval-row">
+      <span class="label-sm">▍ フリップ間隔</span>
+      <div class="type-row">
+        <button class="type-btn"          id="si-1" onclick="selSoloInt(1000)">1秒</button>
+        <button class="type-btn selected" id="si-2" onclick="selSoloInt(2000)">2秒</button>
+        <button class="type-btn"          id="si-3" onclick="selSoloInt(3500)">3.5秒</button>
+        <button class="type-btn"          id="si-5" onclick="selSoloInt(5000)">5秒</button>
+      </div>
+    </div>
+    <div class="flex-gap mt-18">
+      <button class="btn btn-dark btn-sm" onclick="showScreen('title-screen')">戻る</button>
+      <button class="btn btn-gold btn-sm" onclick="startSoloGame()" style="flex:1;">はじめる →</button>
+    </div>
+  </div>
 </div>
 
 <!-- CREATE ROOM -->
 <div id="create-screen" class="screen">
   <div class="card">
     <div class="section-title">ルームを作る</div>
-
     <span class="label-sm">▍ あなたの名前</span>
     <input class="name-input" id="create-name" type="text" placeholder="プレイヤー名" maxlength="12"/>
-
     <span class="label-sm">▍ 出題タイプ</span>
     <div class="type-row">
       <button class="type-btn selected" id="qt-kanji"  onclick="selQt('kanji')">漢字</button>
       <button class="type-btn"          id="qt-jukugo" onclick="selQt('jukugo')">熟語</button>
       <button class="type-btn"          id="qt-yoji"   onclick="selQt('yoji')">四字熟語</button>
     </div>
-
     <span class="label-sm">▍ 難易度</span>
     <div id="diff-area"></div>
-
     <span class="label-sm">▍ ゲームモード</span>
     <div class="type-row">
       <button class="type-btn selected" id="flip-random" onclick="selFlip('random')">🎲 ランダム</button>
       <button class="type-btn"          id="flip-select" onclick="selFlip('select')">🎯 セレクト</button>
     </div>
-
     <div id="interval-row">
       <span class="label-sm">▍ フリップ間隔</span>
       <div class="type-row">
@@ -231,7 +250,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
         <button class="type-btn"          id="int-5" onclick="selInt(5000)">5秒</button>
       </div>
     </div>
-
     <span class="label-sm">▍ 対戦ラウンド数</span>
     <div class="type-row">
       <button class="type-btn"          id="rnd-3" onclick="selRounds(3)">3問</button>
@@ -239,7 +257,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <button class="type-btn selected" id="rnd-7" onclick="selRounds(7)">7問</button>
       <button class="type-btn"          id="rnd-9" onclick="selRounds(9)">9問</button>
     </div>
-
     <div class="flex-gap mt-18">
       <button class="btn btn-dark btn-sm" onclick="showScreen('title-screen')">戻る</button>
       <button class="btn btn-gold btn-sm" onclick="doCreateRoom()" style="flex:1;">ルーム作成 →</button>
@@ -288,20 +305,16 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="info-chip" id="timer-chip">残 <strong id="lbl-timer">--</strong>s</div>
       <div class="info-chip"><strong id="lbl-diff">--</strong></div>
     </div>
-    <div class="round-indicator" id="lbl-round">-- / --</div>
+    <div class="round-indicator" id="lbl-round"></div>
     <button class="btn btn-dark btn-xs" onclick="doGiveUp()">降参</button>
   </div>
-
-  <div class="match-scores" id="match-scores"></div>
+  <div class="match-scores hidden" id="match-scores"></div>
   <div class="timer-bar-wrap"><div class="timer-bar" id="timer-bar"></div></div>
 
-  <!-- KANJI -->
   <div class="grid-wrap hidden" id="kanji-grid-wrap">
     <div id="hidden-content"><div id="hidden-kanji">？</div></div>
     <div id="grid"></div>
   </div>
-
-  <!-- MULTI -->
   <div class="hidden" id="multi-grids-outer">
     <div class="multi-progress-row" id="multi-progress"></div>
     <div id="multi-grids-row"></div>
@@ -316,15 +329,15 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 </div><!-- #app -->
 
-<!-- OVERLAYS (appの外) -->
+<!-- OVERLAYS -->
 <div class="overlay hidden" id="round-overlay">
   <div class="overlay-card">
     <div class="overlay-title" id="ov-title">結果</div>
     <div class="overlay-answer" id="ov-answer">--</div>
     <div class="overlay-sub" id="ov-sub"></div>
     <div class="round-scores-row" id="ov-scores"></div>
-    <div class="overlay-sub" id="ov-round-info"></div>
-    <button class="btn btn-gold btn-sm" id="ov-next-btn" onclick="doReadyNext()" style="width:100%;margin-top:12px;">次のラウンドへ →</button>
+    <div class="overlay-sub" id="ov-round-info" style="margin-top:8px;"></div>
+    <button class="btn btn-gold btn-sm" id="ov-next-btn" onclick="doReadyNext()" style="width:100%;margin-top:14px;">次へ →</button>
   </div>
 </div>
 
@@ -336,118 +349,104 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="overlay-sub" style="margin-bottom:14px;">お疲れ様でした！</div>
     <div class="flex-gap">
       <button class="btn btn-gold btn-sm" onclick="doRematch()">もう一度</button>
-      <button class="btn btn-dark btn-sm" onclick="leaveRoom()">ロビーへ戻る</button>
+      <button class="btn btn-dark btn-sm" onclick="backToTitle()">タイトルへ</button>
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<!-- Socket.io (CDN) -->
-<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<!-- ★ CDNではなくサーバーが配信するSocket.ioクライアントを使う -->
+<script src="/socket.io/socket.io.js"></script>
+<script src="/words.js"></script>
 <script>
 // ================================================================
-// CLIENT STATE
+// WORD POOLS（ソロ用：words.js で定義済みの JUKUGO_DB 等を利用）
+// ================================================================
+// words.js で KANJI_DB / JUKUGO_DB / YOJI_DB が定義される
+const SOLO_POOLS = {
+  kanji:  typeof KANJI_DB  !== 'undefined' ? KANJI_DB  : {},
+  jukugo: typeof JUKUGO_DB !== 'undefined' ? JUKUGO_DB : {},
+  yoji:   typeof YOJI_DB   !== 'undefined' ? YOJI_DB   : {},
+};
+
+function soloPickWord(quizType, difficulty, recentAnswers) {
+  const db   = SOLO_POOLS[quizType] || {};
+  const pool = db[difficulty] || db['all'] || Object.values(db).flat();
+  const candidates = pool.filter(w => !recentAnswers.includes(w));
+  const finalPool  = candidates.length > 0 ? candidates : pool;
+  return finalPool[Math.floor(Math.random() * finalPool.length)] || '？';
+}
+
+// ================================================================
+// STATE
 // ================================================================
 const cl = {
+  // mode
+  isSolo: false,
   socket: null,
   myId: null,
   roomCode: null,
   isHost: false,
-  settings: {
-    quizType: 'kanji',
-    difficulty: 'k9',
-    flipMode: 'random',
-    flipInterval: 2000,
-    totalRounds: 7,
-  },
+  // settings (online)
+  settings: { quizType:'kanji', difficulty:'chu', flipMode:'random', flipInterval:2000, totalRounds:7 },
+  // solo settings
+  solo: { quizType:'kanji', difficulty:'chu', flipMode:'random', flipInterval:2000 },
   // game state
   round: 0,
-  totalRounds: 5,
+  totalRounds: 7,
   timeLeft: 90,
   timerTotal: 90,
   charList: [],
   charTilesOpen: [],
   tilesOpen: [],
-  scores: [],   // [{id, name, score}]
+  scores: [],
   quizType: 'kanji',
+  // solo internals
+  soloAnswer: '',
+  soloFlipHandle: null,
+  soloCountHandle: null,
+  soloRRCursor: 0,
+  soloRecentAnswers: [],
 };
 
 // ================================================================
 // SOCKET INIT
 // ================================================================
 function initSocket() {
-  cl.socket = io();
+  // socket.io.js が /socket.io/socket.io.js から読み込まれるので
+  // io() は自動的に同じオリジンのサーバーへ接続する
+  cl.socket = io({ transports: ['websocket', 'polling'] });
 
   cl.socket.on('connect', () => {
     cl.myId = cl.socket.id;
-    document.getElementById('conn-status').textContent = '接続済み ✓';
+    document.getElementById('conn-status').textContent = 'オンライン対戦 接続済み ✓';
     document.getElementById('conn-status').style.color = '#27ae60';
   });
-
   cl.socket.on('disconnect', () => {
-    document.getElementById('conn-status').textContent = '切断されました';
-    showToast('サーバーとの接続が切れました', 'error');
+    document.getElementById('conn-status').textContent = 'サーバー未接続（ひとりプレイは可能）';
+    document.getElementById('conn-status').style.color = '#c9a227';
   });
-
-  cl.socket.on('error', ({ message }) => {
-    showToast(message, 'error');
+  cl.socket.on('connect_error', () => {
+    document.getElementById('conn-status').textContent = 'サーバー未接続（ひとりプレイは可能）';
+    document.getElementById('conn-status').style.color = '#c9a227';
   });
-
-  cl.socket.on('roomCreated', ({ code, room }) => {
-    cl.roomCode = code;
-    cl.isHost = true;
-    enterLobby(room);
-  });
-
-  cl.socket.on('joinedRoom', ({ room }) => {
-    cl.roomCode = room.code;
-    cl.isHost = false;
-    enterLobby(room);
-  });
-
-  cl.socket.on('playerJoined', ({ room }) => {
+  cl.socket.on('error',         ({ message }) => showToast(message));
+  cl.socket.on('roomCreated',   ({ code, room }) => { cl.roomCode=code; cl.isHost=true; enterLobby(room); });
+  cl.socket.on('joinedRoom',    ({ room })        => { cl.roomCode=room.code; cl.isHost=false; enterLobby(room); });
+  cl.socket.on('playerJoined',  ({ room })        => {
     updateLobbyPlayers(room);
-    showToast('相手が参加しました！', 'success');
-    if (cl.isHost) {
-      document.getElementById('start-btn').classList.remove('hidden');
-    }
+    showToast('相手が参加しました！','success');
+    if (cl.isHost) document.getElementById('start-btn').classList.remove('hidden');
   });
-
-  cl.socket.on('settingsUpdated', ({ settings }) => {
-    cl.settings = settings;
-    updateLobbySettingsSummary();
-  });
-
-  cl.socket.on('roundStart', (data) => {
-    startRoundClient(data);
-  });
-
-  cl.socket.on('tileOpened', ({ charIndex, tileIndex }) => {
-    applyTileOpen(charIndex, tileIndex);
-  });
-
-  cl.socket.on('tick', ({ timeLeft }) => {
-    cl.timeLeft = timeLeft;
-    updateTimerUI();
-  });
-
-  cl.socket.on('wrongAnswer', ({ playerName }) => {
-    showToast(`${playerName}: 不正解`, 'info');
-  });
-
-  cl.socket.on('roundEnd', (data) => {
-    showRoundOverlay(data);
-  });
-
-  cl.socket.on('matchEnd', (data) => {
-    showMatchOverlay(data);
-  });
-
-  cl.socket.on('playerLeft', ({ message }) => {
-    showToast(message, 'error');
-    setTimeout(() => leaveRoom(), 2000);
-  });
+  cl.socket.on('settingsUpdated', ({ settings }) => { cl.settings=settings; updateLobbySettingsSummary(); });
+  cl.socket.on('roundStart',    data  => startRoundClient(data));
+  cl.socket.on('tileOpened',    data  => applyTileOpen(data.charIndex, data.tileIndex));
+  cl.socket.on('tick',          ({ timeLeft }) => { cl.timeLeft=timeLeft; updateTimerUI(); });
+  cl.socket.on('wrongAnswer',   ({ playerName }) => showToast(`${playerName}：不正解`,'info'));
+  cl.socket.on('roundEnd',      data  => showRoundOverlay(data));
+  cl.socket.on('matchEnd',      data  => showMatchOverlay(data));
+  cl.socket.on('playerLeft',    ({ message }) => { showToast(message); setTimeout(()=>leaveRoom(),2500); });
 }
 
 // ================================================================
@@ -457,23 +456,207 @@ function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
-
-function showCreate() {
-  buildDiffArea();
-  showScreen('create-screen');
+function backToTitle() {
+  document.getElementById('round-overlay').classList.add('hidden');
+  document.getElementById('match-overlay').classList.add('hidden');
+  soloStop();
+  showScreen('title-screen');
 }
-function showJoin() { showScreen('join-screen'); }
 
 // ================================================================
-// SETTINGS UI
+// SOLO SETUP UI
 // ================================================================
+function showSoloSetup() {
+  buildSoloDiffArea();
+  showScreen('solo-screen');
+}
+function selSoloQt(t) {
+  cl.solo.quizType = t;
+  ['kanji','jukugo','yoji'].forEach(x =>
+    document.getElementById('sq-'+x).classList.toggle('selected', x===t));
+  buildSoloDiffArea();
+}
+function buildSoloDiffArea() {
+  const isKanji = cl.solo.quizType === 'kanji';
+  const el = document.getElementById('solo-diff-area');
+  if (isKanji) {
+    el.innerHTML = `<div class="diff-grid">
+      <button class="diff-btn" id="sd-sho" onclick="selSoloDiff('sho')">小学校<span class="diff-sub">小1〜6年</span></button>
+      <button class="diff-btn selected" id="sd-chu" onclick="selSoloDiff('chu')">中学校<span class="diff-sub">常用漢字</span></button>
+      <button class="diff-btn" id="sd-ko"  onclick="selSoloDiff('ko')">高校・大学<span class="diff-sub">難読・古語</span></button>
+      <button class="diff-btn" id="sd-dai" onclick="selSoloDiff('dai')">超難問<span class="diff-sub">稀少字</span></button>
+    </div>`;
+    cl.solo.difficulty = 'chu';
+  } else {
+    el.innerHTML = `<div class="diff-grid">
+      <button class="diff-btn" id="sd-k10" onclick="selSoloDiff('k10')">10級<span class="diff-sub">小1</span></button>
+      <button class="diff-btn" id="sd-k9"  onclick="selSoloDiff('k9')">9級<span class="diff-sub">小2</span></button>
+      <button class="diff-btn" id="sd-k8"  onclick="selSoloDiff('k8')">8〜7級<span class="diff-sub">小3〜4</span></button>
+      <button class="diff-btn" id="sd-k7"  onclick="selSoloDiff('k7')">7〜6級<span class="diff-sub">小5〜6</span></button>
+      <button class="diff-btn" id="sd-k6"  onclick="selSoloDiff('k6')">6〜5級<span class="diff-sub">中学入口</span></button>
+      <button class="diff-btn" id="sd-k4"  onclick="selSoloDiff('k4')">4〜3級<span class="diff-sub">中学</span></button>
+      <button class="diff-btn" id="sd-k2"  onclick="selSoloDiff('k2')">準2〜2級<span class="diff-sub">高校</span></button>
+      <button class="diff-btn" id="sd-k1"  onclick="selSoloDiff('k1')">準1〜1級<span class="diff-sub">大学</span></button>
+      <button class="diff-btn selected" id="sd-all" onclick="selSoloDiff('all')">総合<span class="diff-sub">全レベル</span></button>
+    </div>`;
+    cl.solo.difficulty = 'all';
+  }
+}
+function selSoloDiff(d) {
+  cl.solo.difficulty = d;
+  document.querySelectorAll('#solo-diff-area .diff-btn').forEach(b => b.classList.remove('selected'));
+  const el = document.getElementById('sd-'+d);
+  if (el) el.classList.add('selected');
+}
+function selSoloFlip(m) {
+  cl.solo.flipMode = m;
+  document.getElementById('sf-random').classList.toggle('selected', m==='random');
+  document.getElementById('sf-select').classList.toggle('selected', m==='select');
+  document.getElementById('solo-interval-row').style.display = m==='random' ? '' : 'none';
+}
+function selSoloInt(ms) {
+  cl.solo.flipInterval = ms;
+  [1,2,3,5].forEach(k =>
+    document.getElementById('si-'+k).classList.toggle('selected', {1:1000,2:2000,3:3500,5:5000}[k]===ms));
+}
+
+// ================================================================
+// SOLO GAME
+// ================================================================
+function startSoloGame() {
+  cl.isSolo = true;
+  soloStop();
+  cl.soloRecentAnswers = [];
+  doSoloRound();
+}
+
+function doSoloRound() {
+  const s = cl.solo;
+  const word = soloPickWord(s.quizType, s.difficulty, cl.soloRecentAnswers);
+  cl.soloAnswer = word;
+  cl.soloRecentAnswers.push(word);
+  if (cl.soloRecentAnswers.length > 15) cl.soloRecentAnswers.shift();
+
+  const charList = [...word];
+  cl.charList = charList;
+  cl.quizType  = s.quizType;
+  cl.tilesOpen = Array(64).fill(false);
+  cl.charTilesOpen = Array(charList.length).fill(null).map(() => Array(64).fill(false));
+  cl.soloRRCursor = 0;
+
+  const timeSec = s.quizType === 'kanji' ? 90 : 90 + charList.length * 30;
+  cl.timeLeft   = timeSec;
+  cl.timerTotal = timeSec;
+
+  // hide overlays
+  document.getElementById('round-overlay').classList.add('hidden');
+  document.getElementById('match-overlay').classList.add('hidden');
+
+  showScreen('game-screen');
+  document.getElementById('lbl-mode').textContent  = s.flipMode==='random' ? 'ランダム' : 'セレクト';
+  document.getElementById('lbl-diff').textContent  = getDiffLabel(s.difficulty);
+  document.getElementById('lbl-round').textContent = 'ひとりプレイ';
+  document.getElementById('lbl-total').textContent = String(s.quizType==='kanji' ? 64 : charList.length * 64);
+  document.getElementById('lbl-open').textContent  = '0';
+  document.getElementById('answer-input').value    = '';
+  document.getElementById('answer-hint').textContent = '';
+  document.getElementById('match-scores').classList.add('hidden');
+
+  if (s.quizType === 'kanji') {
+    document.getElementById('kanji-grid-wrap').classList.remove('hidden');
+    document.getElementById('multi-grids-outer').classList.add('hidden');
+    buildKanjiGrid();
+  } else {
+    document.getElementById('kanji-grid-wrap').classList.add('hidden');
+    document.getElementById('multi-grids-outer').classList.remove('hidden');
+    buildMultiGrids(charList.length);
+  }
+
+  updateTimerUI();
+  if (s.flipMode === 'random') soloStartFlip();
+  soloStartCountdown(timeSec);
+  setTimeout(() => document.getElementById('answer-input').focus(), 300);
+}
+
+function soloStartFlip() {
+  cl.soloFlipHandle = setInterval(() => {
+    if (cl.quizType === 'kanji') {
+      const closed = cl.tilesOpen.map((o,i) => o?null:i).filter(x=>x!==null);
+      if (!closed.length) { clearInterval(cl.soloFlipHandle); return; }
+      const idx = closed[Math.floor(Math.random()*closed.length)];
+      cl.tilesOpen[idx] = true;
+      animateTileOpen('#grid', idx);
+      updateOpenCount();
+    } else {
+      const n = cl.charList.length;
+      let tries = 0;
+      while (tries < n) {
+        const ci = cl.soloRRCursor % n;
+        cl.soloRRCursor = (cl.soloRRCursor+1) % n;
+        const closed = cl.charTilesOpen[ci].map((o,i)=>o?null:i).filter(x=>x!==null);
+        if (closed.length) {
+          const idx = closed[Math.floor(Math.random()*closed.length)];
+          cl.charTilesOpen[ci][idx] = true;
+          animateTileOpen('#cgrid-'+ci, idx);
+          const cnt = cl.charTilesOpen[ci].filter(Boolean).length;
+          const cntEl = document.getElementById('ccount-'+ci);
+          if (cntEl) cntEl.textContent = cnt+'/64';
+          if (cnt===64) markCharDone(ci);
+          updateOpenCount();
+          break;
+        }
+        tries++;
+      }
+    }
+  }, cl.solo.flipInterval);
+}
+
+function soloStartCountdown(sec) {
+  cl.timeLeft   = sec;
+  cl.timerTotal = sec;
+  cl.soloCountHandle = setInterval(() => {
+    cl.timeLeft--;
+    updateTimerUI();
+    if (cl.timeLeft <= 0) {
+      soloStop();
+      soloShowResult(false, 'タイムアップ！');
+    }
+  }, 1000);
+}
+
+function soloStop() {
+  clearInterval(cl.soloFlipHandle);
+  clearInterval(cl.soloCountHandle);
+  cl.soloFlipHandle = null;
+  cl.soloCountHandle = null;
+}
+
+function soloShowResult(won, label) {
+  revealAll();
+  const ov = document.getElementById('round-overlay');
+  document.getElementById('ov-title').textContent   = won ? '🎊 正解！' : '💀 '+label;
+  document.getElementById('ov-answer').textContent  = cl.soloAnswer;
+  document.getElementById('ov-sub').textContent     = won ? 'よく分かりました！' : `正解は「${cl.soloAnswer}」でした`;
+  document.getElementById('ov-scores').innerHTML    = '';
+  document.getElementById('ov-round-info').textContent = '';
+  const btn = document.getElementById('ov-next-btn');
+  btn.textContent = '次の問題へ →';
+  btn.disabled    = false;
+  ov.classList.remove('hidden');
+}
+
+// ================================================================
+// ONLINE SETTINGS UI
+// ================================================================
+function showCreate() { buildDiffArea(); showScreen('create-screen'); }
+function showJoin()   { showScreen('join-screen'); }
+
 function selQt(t) {
   cl.settings.quizType = t;
   ['kanji','jukugo','yoji'].forEach(x =>
     document.getElementById('qt-'+x).classList.toggle('selected', x===t));
   buildDiffArea();
 }
-
 function buildDiffArea() {
   const isKanji = cl.settings.quizType === 'kanji';
   const el = document.getElementById('diff-area');
@@ -500,27 +683,22 @@ function buildDiffArea() {
     cl.settings.difficulty = 'all';
   }
 }
-
 function selDiff(d) {
   cl.settings.difficulty = d;
-  document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('selected'));
-  const el = document.getElementById('d-'+d);
-  if (el) el.classList.add('selected');
+  document.querySelectorAll('#diff-area .diff-btn').forEach(b => b.classList.remove('selected'));
+  const el = document.getElementById('d-'+d); if (el) el.classList.add('selected');
 }
-
 function selFlip(m) {
   cl.settings.flipMode = m;
   document.getElementById('flip-random').classList.toggle('selected', m==='random');
   document.getElementById('flip-select').classList.toggle('selected', m==='select');
   document.getElementById('interval-row').style.display = m==='random' ? '' : 'none';
 }
-
 function selInt(ms) {
   cl.settings.flipInterval = ms;
   [1,2,3,5].forEach(k =>
     document.getElementById('int-'+k).classList.toggle('selected', {1:1000,2:2000,3:3500,5:5000}[k]===ms));
 }
-
 function selRounds(n) {
   cl.settings.totalRounds = n;
   [3,5,7,9].forEach(k =>
@@ -534,30 +712,25 @@ function doCreateRoom() {
   const name = document.getElementById('create-name').value.trim() || 'ホスト';
   cl.socket.emit('createRoom', { playerName: name, settings: cl.settings });
 }
-
 function doJoinRoom() {
   const name = document.getElementById('join-name').value.trim() || 'ゲスト';
   const code = document.getElementById('join-code').value.trim().toUpperCase();
   if (code.length < 4) { showToast('コードを入力してください'); return; }
   cl.socket.emit('joinRoom', { roomCode: code, playerName: name });
 }
-
 function enterLobby(room) {
+  cl.isSolo = false;
   showScreen('lobby-screen');
   document.getElementById('lobby-code').textContent = room.code;
   cl.settings = room.settings;
   updateLobbyPlayers(room);
   updateLobbySettingsSummary();
-
   if (cl.isHost && room.players.length >= 2) {
     document.getElementById('start-btn').classList.remove('hidden');
-  } else if (cl.isHost) {
-    document.getElementById('start-btn').classList.add('hidden');
-  } else {
+  } else if (!cl.isHost) {
     document.getElementById('waiting-msg').classList.remove('hidden');
   }
 }
-
 function updateLobbyPlayers(room) {
   const el = document.getElementById('lobby-players');
   el.innerHTML = '';
@@ -567,10 +740,9 @@ function updateLobbyPlayers(room) {
     const dot = document.createElement('div');
     dot.className = 'dot' + (i===1?' red':'');
     row.appendChild(dot);
-    row.appendChild(document.createTextNode(p.name + (p.id === room.hostId ? '（ホスト）' : '')));
+    row.appendChild(document.createTextNode(p.name + (p.id===room.hostId?' （ホスト）':'')));
     el.appendChild(row);
   });
-  // Waiting slot
   if (room.players.length < 2) {
     const row = document.createElement('div');
     row.className = 'player-row';
@@ -581,64 +753,47 @@ function updateLobbyPlayers(room) {
     row.appendChild(document.createTextNode('参加待ち...'));
     el.appendChild(row);
   }
-  // Show start button if host and 2 players
-  if (cl.isHost && room.players.length >= 2) {
+  if (cl.isHost && room.players.length >= 2)
     document.getElementById('start-btn').classList.remove('hidden');
-  }
 }
-
 function updateLobbySettingsSummary() {
   const s = cl.settings;
-  const qtLabel = {kanji:'漢字',jukugo:'熟語',yoji:'四字熟語'}[s.quizType] || s.quizType;
-  const diffLabel = {
-    sho:'小学校',chu:'中学校',ko:'高校・大学',dai:'超難問',
-    k10:'漢検10級',k9:'漢検9級',k8:'漢検8〜7級',k7:'漢検7〜6級',
-    k6:'漢検6〜5級',k4:'漢検4〜3級',k2:'漢検準2〜2級',k1:'漢検準1〜1級',all:'漢検総合'
-  }[s.difficulty] || s.difficulty;
-  const flipLabel = s.flipMode==='random' ? `ランダム(${s.flipInterval/1000}秒)` : 'セレクト';
+  const qtL  = {kanji:'漢字',jukugo:'熟語',yoji:'四字熟語'}[s.quizType]||s.quizType;
+  const dL   = getDiffLabel(s.difficulty);
+  const flL  = s.flipMode==='random' ? `ランダム(${s.flipInterval/1000}秒)` : 'セレクト';
   document.getElementById('lobby-settings-summary').textContent =
-    `${qtLabel} ／ ${diffLabel} ／ ${flipLabel} ／ ${s.totalRounds}ラウンド`;
+    `${qtL} ／ ${dL} ／ ${flL} ／ ${s.totalRounds}問`;
 }
-
-function doStartMatch() {
-  cl.socket.emit('startMatch', { roomCode: cl.roomCode });
-}
-
-function leaveRoom() {
-  if (cl.socket) cl.socket.disconnect();
-  location.reload();
-}
+function doStartMatch() { cl.socket.emit('startMatch', { roomCode: cl.roomCode }); }
+function leaveRoom() { location.reload(); }
 
 // ================================================================
-// GAME CLIENT
+// ONLINE ROUND CLIENT
 // ================================================================
 function startRoundClient(data) {
-  cl.round = data.round;
+  cl.isSolo      = false;
+  cl.round       = data.round;
   cl.totalRounds = data.totalRounds;
-  cl.quizType = data.quizType;
-  cl.charList = Array(data.charCount).fill('');
-  cl.scores = data.scores;
-  cl.timeLeft = data.timeLeft;
-  cl.timerTotal = data.timeLeft;
+  cl.quizType    = data.quizType;
+  cl.charList    = Array(data.charCount).fill('');
+  cl.scores      = data.scores;
+  cl.timeLeft    = data.timeLeft;
+  cl.timerTotal  = data.timeLeft;
+  cl.tilesOpen   = Array(64).fill(false);
+  cl.charTilesOpen = Array(data.charCount).fill(null).map(()=>Array(64).fill(false));
 
-  // Init tile state
-  cl.tilesOpen = Array(64).fill(false);
-  cl.charTilesOpen = Array(data.charCount).fill(null).map(() => Array(64).fill(false));
-
-  // Hide overlays
   document.getElementById('round-overlay').classList.add('hidden');
   document.getElementById('match-overlay').classList.add('hidden');
-
   showScreen('game-screen');
 
-  document.getElementById('lbl-mode').textContent = data.settings.flipMode==='random' ? 'ランダム' : 'セレクト';
-  document.getElementById('lbl-diff').textContent = getDiffLabel(data.settings.difficulty);
+  document.getElementById('lbl-mode').textContent  = data.settings.flipMode==='random' ? 'ランダム' : 'セレクト';
+  document.getElementById('lbl-diff').textContent  = getDiffLabel(data.settings.difficulty);
   document.getElementById('lbl-round').textContent = `第${data.round}問 / ${data.totalRounds}問`;
   document.getElementById('lbl-total').textContent = String(data.charCount * 64);
-  document.getElementById('lbl-open').textContent = '0';
-  document.getElementById('answer-input').value = '';
-  document.getElementById('answer-input').disabled = false;
+  document.getElementById('lbl-open').textContent  = '0';
+  document.getElementById('answer-input').value    = '';
   document.getElementById('answer-hint').textContent = '';
+  document.getElementById('match-scores').classList.remove('hidden');
 
   buildMatchScores();
   updateTimerUI();
@@ -656,282 +811,254 @@ function startRoundClient(data) {
 
 function applyTileOpen(charIndex, tileIndex) {
   if (charIndex === -1) {
-    // kanji
     if (cl.tilesOpen[tileIndex]) return;
     cl.tilesOpen[tileIndex] = true;
     animateTileOpen('#grid', tileIndex);
-    updateOpenCount();
   } else {
     if (cl.charTilesOpen[charIndex][tileIndex]) return;
     cl.charTilesOpen[charIndex][tileIndex] = true;
     animateTileOpen('#cgrid-'+charIndex, tileIndex);
-
-    const openCount = cl.charTilesOpen[charIndex].filter(Boolean).length;
-    const cnt = document.getElementById('ccount-'+charIndex);
-    if (cnt) cnt.textContent = openCount + '/64';
-    if (openCount === 64) markCharDone(charIndex);
-    updateOpenCount();
+    const cnt = cl.charTilesOpen[charIndex].filter(Boolean).length;
+    const cntEl = document.getElementById('ccount-'+charIndex);
+    if (cntEl) cntEl.textContent = cnt+'/64';
+    if (cnt===64) markCharDone(charIndex);
   }
+  updateOpenCount();
 }
 
-function updateOpenCount() {
-  let total;
-  if (cl.quizType === 'kanji') {
-    total = cl.tilesOpen.filter(Boolean).length;
-  } else {
-    total = cl.charTilesOpen.flat().filter(Boolean).length;
-  }
-  document.getElementById('lbl-open').textContent = total;
-}
-
-function markCharDone(ci) {
-  const wrap = document.getElementById('cgw-'+ci);
-  if (wrap) wrap.classList.add('done-char');
-  const badge = document.getElementById('cbadge-'+ci);
-  if (badge) badge.classList.add('revealed');
-}
-
-function updateTimerUI() {
-  document.getElementById('lbl-timer').textContent = cl.timeLeft;
-  const chip = document.getElementById('timer-chip');
-  chip.classList.toggle('warn', cl.timeLeft <= 10);
-  const pct = Math.max(0, cl.timeLeft / cl.timerTotal * 100);
-  document.getElementById('timer-bar').style.width = pct + '%';
-}
-
-// ── Grid builders ──
+// ================================================================
+// GRID BUILDERS
+// ================================================================
 function buildKanjiGrid() {
   const g = document.getElementById('grid');
   g.innerHTML = '';
-  for (let i = 0; i < 64; i++) g.appendChild(makeTile(i, 'k'));
+  for (let i = 0; i < 64; i++) g.appendChild(makeTile(i,'k'));
   document.getElementById('hidden-kanji').textContent = '？';
 }
-
 function buildMultiGrids(n) {
   const row = document.getElementById('multi-grids-row');
   row.innerHTML = '';
   const pr  = document.getElementById('multi-progress');
   pr.innerHTML = '';
-
-  const maxW  = Math.min(window.innerWidth - 32, 780);
-  const size  = Math.max(Math.min(Math.floor((maxW - (n-1)*8) / n), 180), 60);
-
+  const maxW = Math.min(window.innerWidth-32,780);
+  const size = Math.max(Math.min(Math.floor((maxW-(n-1)*8)/n),180),60);
   for (let ci = 0; ci < n; ci++) {
-    // progress badge
     const badge = document.createElement('div');
-    badge.className = 'char-badge';
-    badge.id = 'cbadge-'+ci;
-    badge.textContent = '？';
+    badge.className = 'char-badge'; badge.id='cbadge-'+ci; badge.textContent='？';
     pr.appendChild(badge);
-
     const block = document.createElement('div');
     block.className = 'char-grid-block';
-
     const lbl = document.createElement('div');
-    lbl.className = 'char-grid-label';
-    lbl.textContent = `第${ci+1}字`;
+    lbl.className='char-grid-label'; lbl.textContent=`第${ci+1}字`;
     block.appendChild(lbl);
-
     const wrap = document.createElement('div');
-    wrap.className = 'char-grid-wrap';
-    wrap.id = 'cgw-'+ci;
-    wrap.style.cssText = `width:${size}px;height:${size}px;`;
-
+    wrap.className='char-grid-wrap'; wrap.id='cgw-'+ci;
+    wrap.style.cssText=`width:${size}px;height:${size}px;`;
     const hid = document.createElement('div');
-    hid.className = 'char-hidden';
-    const hs = document.createElement('span');
-    hs.style.fontSize = Math.round(size * 0.86) + 'px';
-    hs.textContent = '？';
-    hid.appendChild(hs);
-    wrap.appendChild(hid);
-
-    const grid = document.createElement('div');
-    grid.className = 'char-grid-el';
-    grid.id = 'cgrid-'+ci;
-    for (let i = 0; i < 64; i++) grid.appendChild(makeTile(i, 'j'+ci));
-    wrap.appendChild(grid);
-    block.appendChild(wrap);
-
-    const cnt = document.createElement('div');
-    cnt.className = 'char-open-count';
-    cnt.id = 'ccount-'+ci;
-    cnt.textContent = '0/64';
+    hid.className='char-hidden';
+    const hs=document.createElement('span');
+    hs.style.fontSize=Math.round(size*0.86)+'px'; hs.textContent='？';
+    hid.appendChild(hs); wrap.appendChild(hid);
+    const grid=document.createElement('div');
+    grid.className='char-grid-el'; grid.id='cgrid-'+ci;
+    for(let i=0;i<64;i++) grid.appendChild(makeTile(i,'j'+ci));
+    wrap.appendChild(grid); block.appendChild(wrap);
+    const cnt=document.createElement('div');
+    cnt.className='char-open-count'; cnt.id='ccount-'+ci; cnt.textContent='0/64';
     block.appendChild(cnt);
-
     row.appendChild(block);
   }
 }
-
 function makeTile(index, prefix) {
-  const t = document.createElement('div');
-  t.className = 'tile closed';
-  t.dataset.index = index;
-  const n = document.createElement('div');
-  n.className = 'tile-num';
-  n.textContent = index + 1;
+  const t=document.createElement('div');
+  t.className='tile closed'; t.dataset.index=index;
+  const n=document.createElement('div');
+  n.className='tile-num'; n.textContent=index+1;
   t.appendChild(n);
-  // セレクトモードのみクリック送信
   t.addEventListener('click', () => {
-    if (cl.settings.flipMode !== 'select') return;
-    const ci = prefix.startsWith('j') ? parseInt(prefix.slice(1)) : -1;
-    cl.socket.emit('selectTile', { roomCode: cl.roomCode, charIndex: ci, tileIndex: index });
+    if (cl.isSolo) {
+      if (cl.solo.flipMode !== 'select') return;
+      const ci = prefix.startsWith('j') ? parseInt(prefix.slice(1)) : -1;
+      if (ci === -1) {
+        if (cl.tilesOpen[index]) return;
+        cl.tilesOpen[index] = true;
+        animateTileOpen('#grid', index);
+      } else {
+        if (cl.charTilesOpen[ci][index]) return;
+        cl.charTilesOpen[ci][index] = true;
+        animateTileOpen('#cgrid-'+ci, index);
+        const cnt = cl.charTilesOpen[ci].filter(Boolean).length;
+        const cntEl = document.getElementById('ccount-'+ci);
+        if (cntEl) cntEl.textContent = cnt+'/64';
+        if (cnt===64) markCharDone(ci);
+      }
+      updateOpenCount();
+    } else {
+      if (cl.settings.flipMode !== 'select') return;
+      const ci = prefix.startsWith('j') ? parseInt(prefix.slice(1)) : -1;
+      cl.socket.emit('selectTile', { roomCode: cl.roomCode, charIndex: ci, tileIndex: index });
+    }
   });
   return t;
 }
-
-function animateTileOpen(gridSelector, i) {
-  const el = document.querySelector(`${gridSelector} .tile[data-index="${i}"]`);
-  if (!el || el.classList.contains('open')) return;
+function animateTileOpen(sel, i) {
+  const el=document.querySelector(`${sel} .tile[data-index="${i}"]`);
+  if(!el||el.classList.contains('open')) return;
   el.classList.add('flipping');
-  setTimeout(() => {
+  setTimeout(()=>{
     el.classList.remove('closed','flipping');
     el.classList.add('open','just-opened');
-    el.innerHTML = '';
-    setTimeout(() => el.classList.remove('just-opened'), 400);
-  }, 140);
+    el.innerHTML='';
+    setTimeout(()=>el.classList.remove('just-opened'),400);
+  },140);
+}
+function markCharDone(ci) {
+  const w=document.getElementById('cgw-'+ci); if(w) w.classList.add('done-char');
+  const b=document.getElementById('cbadge-'+ci); if(b) b.classList.add('revealed');
+}
+function updateOpenCount() {
+  const total = cl.quizType==='kanji'
+    ? cl.tilesOpen.filter(Boolean).length
+    : cl.charTilesOpen.flat().filter(Boolean).length;
+  document.getElementById('lbl-open').textContent = total;
+}
+function updateTimerUI() {
+  document.getElementById('lbl-timer').textContent = cl.timeLeft;
+  document.getElementById('timer-chip').classList.toggle('warn', cl.timeLeft<=10);
+  document.getElementById('timer-bar').style.width = Math.max(0,cl.timeLeft/cl.timerTotal*100)+'%';
 }
 
-// ── Score board ──
+// ================================================================
+// SCORE BOARD (online)
+// ================================================================
 function buildMatchScores() {
-  const sb = document.getElementById('match-scores');
-  sb.innerHTML = '';
-  cl.scores.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'score-card ' + (p.id === cl.myId ? 'me' : 'opponent');
-    card.id = 'sc-'+p.id;
-    card.innerHTML = `<div class="score-card-name">${p.name}</div><div class="score-card-pts">${p.score}</div>`;
-    sb.appendChild(card);
+  const sb=document.getElementById('match-scores'); sb.innerHTML='';
+  cl.scores.forEach(p=>{
+    const c=document.createElement('div');
+    c.className='score-card '+(p.id===cl.myId?'me':'opponent');
+    c.id='sc-'+p.id;
+    c.innerHTML=`<div class="score-card-name">${p.name}</div><div class="score-card-pts">${p.score}</div>`;
+    sb.appendChild(c);
   });
 }
-
 function updateMatchScores(scores) {
-  scores.forEach(p => {
-    const el = document.getElementById('sc-'+p.id);
-    if (el) el.querySelector('.score-card-pts').textContent = p.score;
+  scores.forEach(p=>{
+    const el=document.getElementById('sc-'+p.id);
+    if(el) el.querySelector('.score-card-pts').textContent=p.score;
   });
 }
 
-// ── Answer ──
+// ================================================================
+// ANSWER
+// ================================================================
 function doAnswer() {
-  const input = document.getElementById('answer-input').value.trim();
-  if (!input) return;
-  cl.socket.emit('submitAnswer', { roomCode: cl.roomCode, answer: input });
-  document.getElementById('answer-input').value = '';
+  const input=document.getElementById('answer-input').value.trim();
+  if(!input) return;
+  if (cl.isSolo) {
+    if (input === cl.soloAnswer) {
+      soloStop();
+      soloShowResult(true);
+    } else {
+      showToast('不正解... もう少し！');
+      document.getElementById('answer-hint').textContent = `ヒント: ${cl.soloAnswer.length}文字`;
+      document.getElementById('answer-input').value = '';
+      document.getElementById('answer-input').focus();
+    }
+  } else {
+    cl.socket.emit('submitAnswer', { roomCode: cl.roomCode, answer: input });
+    document.getElementById('answer-input').value = '';
+  }
 }
-
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('answer-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') doAnswer();
+    if (e.key==='Enter') doAnswer();
   });
 });
-
 function doGiveUp() {
-  cl.socket.emit('giveUp', { roomCode: cl.roomCode });
+  if (cl.isSolo) {
+    soloStop();
+    soloShowResult(false, '降参...');
+  } else {
+    cl.socket.emit('giveUp', { roomCode: cl.roomCode });
+  }
 }
 
 // ================================================================
 // OVERLAYS
 // ================================================================
 function showRoundOverlay(data) {
-  // Reveal all tiles
   revealAll();
-
   updateMatchScores(data.scores);
-
-  const isWinner = data.winnerId === cl.myId;
+  const isWinner = data.winnerId===cl.myId;
   const isDraw   = !data.winnerId;
-
-  document.getElementById('ov-title').textContent =
-    data.reason === 'timeup' ? '⏰ タイムアップ' :
-    isDraw      ? '引き分け' :
-    isWinner    ? '🎊 正解！' : '😓 相手が正解';
-
+  document.getElementById('ov-title').textContent  =
+    data.reason==='timeup' ? '⏰ タイムアップ' : isDraw ? '引き分け' : isWinner ? '🎊 正解！' : '😓 相手が正解';
   document.getElementById('ov-answer').textContent = data.answer;
-  document.getElementById('ov-sub').textContent =
-    data.winnerId
-      ? `${data.winnerName} が正解！ +1点`
-      : '正解者なし（0点）';
-
-  // Score cards
-  const sc = document.getElementById('ov-scores');
-  sc.innerHTML = '';
-  data.scores.forEach(p => {
-    const c = document.createElement('div');
-    c.className = 'rs-card' + (p.id === data.winnerId ? ' winner' : '');
-    const addBadge = p.id === data.winnerId
-      ? `<span class="rs-pts add" style="font-size:0.9rem;">+1</span>` : '';
-    c.innerHTML = `<div class="rs-name">${p.name}</div><div class="rs-pts">${p.score}</div>${addBadge}`;
+  document.getElementById('ov-sub').textContent    =
+    data.winnerId ? `${data.winnerName} が正解！ +1点` : '正解者なし（0点）';
+  const sc=document.getElementById('ov-scores'); sc.innerHTML='';
+  data.scores.forEach(p=>{
+    const c=document.createElement('div');
+    c.className='rs-card'+(p.id===data.winnerId?' winner':'');
+    const add=p.id===data.winnerId?'<span class="rs-add">+1</span>':'';
+    c.innerHTML=`<div class="rs-name">${p.name}</div><div class="rs-pts">${p.score}</div>${add}`;
     sc.appendChild(c);
   });
-
   document.getElementById('ov-round-info').textContent =
-    data.round >= data.totalRounds
-      ? '最終ラウンド終了'
-      : `残り ${data.totalRounds - data.round} ラウンド`;
-
-  const nextBtn = document.getElementById('ov-next-btn');
-  nextBtn.textContent = data.round >= data.totalRounds ? '結果を見る →' : '次のラウンドへ →';
-
+    data.round>=data.totalRounds ? '最終ラウンド終了' : `残り ${data.totalRounds-data.round} ラウンド`;
+  const btn=document.getElementById('ov-next-btn');
+  btn.textContent=data.round>=data.totalRounds?'結果を見る →':'次のラウンドへ →';
+  btn.disabled=false;
   document.getElementById('round-overlay').classList.remove('hidden');
 }
 
 function doReadyNext() {
-  document.getElementById('ov-next-btn').disabled = true;
-  document.getElementById('ov-next-btn').textContent = '待機中...';
-  cl.socket.emit('readyNext', { roomCode: cl.roomCode });
+  if (cl.isSolo) {
+    document.getElementById('round-overlay').classList.add('hidden');
+    doSoloRound();
+  } else {
+    document.getElementById('ov-next-btn').disabled=true;
+    document.getElementById('ov-next-btn').textContent='待機中...';
+    cl.socket.emit('readyNext', { roomCode: cl.roomCode });
+  }
 }
 
 function showMatchOverlay(data) {
   document.getElementById('round-overlay').classList.add('hidden');
-  const myEntry = data.scores.find(p => p.id === cl.myId);
-  const isWinner = data.winnerId === cl.myId;
-  const isDraw   = !data.winnerId;
-
+  const isWinner=data.winnerId===cl.myId;
+  const isDraw=!data.winnerId;
   document.getElementById('mo-winner').textContent =
-    isDraw    ? '引き分け！' :
-    isWinner  ? '🏆 あなたの勝利！' : '相手の勝利...';
-
-  const sc = document.getElementById('mo-scores');
-  sc.innerHTML = '';
-  data.scores.forEach((p, i) => {
-    const c = document.createElement('div');
-    c.className = 'fs-card' + (p.id === data.winnerId ? ' winner' : '');
-    c.innerHTML = `
-      ${p.id === data.winnerId ? '<span class="fs-crown">👑</span>' : '<span class="fs-crown" style="opacity:0">.</span>'}
-      <div class="fs-name">${p.name}</div>
-      <div class="fs-score">${p.score}</div>`;
+    isDraw?'引き分け！':isWinner?'🏆 あなたの勝利！':'相手の勝利...';
+  const sc=document.getElementById('mo-scores'); sc.innerHTML='';
+  data.scores.forEach(p=>{
+    const c=document.createElement('div');
+    c.className='fs-card'+(p.id===data.winnerId?' winner':'');
+    c.innerHTML=`${p.id===data.winnerId?'<span class="fs-crown">👑</span>':'<span class="fs-crown" style="opacity:0">·</span>'}
+      <div class="fs-name">${p.name}</div><div class="fs-score">${p.score}</div>`;
     sc.appendChild(c);
   });
-
   document.getElementById('match-overlay').classList.remove('hidden');
-  if (isWinner) launchConfetti();
+  if(isWinner) launchConfetti();
 }
 
 function doRematch() {
   document.getElementById('match-overlay').classList.add('hidden');
-  if (cl.isHost) {
-    // Reset scores on server by starting new match
-    cl.socket.emit('startMatch', { roomCode: cl.roomCode });
-  } else {
-    showToast('ホストのリマッチ開始を待っています', 'info');
-  }
+  if (cl.isSolo) { doSoloRound(); return; }
+  if (cl.isHost) cl.socket.emit('startMatch',{ roomCode: cl.roomCode });
+  else showToast('ホストのリマッチ開始を待っています','info');
 }
 
 function revealAll() {
-  if (cl.quizType === 'kanji') {
-    for (let i = 0; i < 64; i++) {
-      const el = document.querySelector(`#grid .tile[data-index="${i}"]`);
-      if (el && !el.classList.contains('open')) {
-        el.classList.remove('closed'); el.classList.add('open'); el.innerHTML = '';
-      }
+  if (cl.quizType==='kanji') {
+    for(let i=0;i<64;i++){
+      const el=document.querySelector(`#grid .tile[data-index="${i}"]`);
+      if(el&&!el.classList.contains('open')){el.classList.remove('closed');el.classList.add('open');el.innerHTML='';}
     }
   } else {
-    cl.charTilesOpen.forEach((_, ci) => {
-      for (let i = 0; i < 64; i++) {
-        const el = document.querySelector(`#cgrid-${ci} .tile[data-index="${i}"]`);
-        if (el && !el.classList.contains('open')) {
-          el.classList.remove('closed'); el.classList.add('open'); el.innerHTML = '';
-        }
+    cl.charTilesOpen.forEach((_,ci)=>{
+      for(let i=0;i<64;i++){
+        const el=document.querySelector(`#cgrid-${ci} .tile[data-index="${i}"]`);
+        if(el&&!el.classList.contains('open')){el.classList.remove('closed');el.classList.add('open');el.innerHTML='';}
       }
       markCharDone(ci);
     });
@@ -939,48 +1066,37 @@ function revealAll() {
 }
 
 // ================================================================
-// CONFETTI
+// CONFETTI / TOAST / UTILS
 // ================================================================
 function launchConfetti() {
-  const c = document.getElementById('confetti');
-  c.innerHTML = '';
-  const cols = ['#c9a227','#c0392b','#2980b9','#f5eed8','#27ae60'];
-  for (let i = 0; i < 70; i++) {
-    const p = document.createElement('div');
-    p.className = 'confetti-piece';
-    p.style.cssText = `left:${Math.random()*100}%;background:${cols[Math.floor(Math.random()*cols.length)]};width:${6+Math.random()*9}px;height:${6+Math.random()*9}px;border-radius:${Math.random()>.5?'50%':'0'};animation-duration:${1.5+Math.random()*2}s;animation-delay:${Math.random()*.8}s;`;
+  const c=document.getElementById('confetti'); c.innerHTML='';
+  const cols=['#c9a227','#c0392b','#2980b9','#f5eed8','#27ae60'];
+  for(let i=0;i<70;i++){
+    const p=document.createElement('div'); p.className='confetti-piece';
+    p.style.cssText=`left:${Math.random()*100}%;background:${cols[Math.floor(Math.random()*cols.length)]};width:${6+Math.random()*9}px;height:${6+Math.random()*9}px;border-radius:${Math.random()>.5?'50%':'0'};animation-duration:${1.5+Math.random()*2}s;animation-delay:${Math.random()*.8}s;`;
     c.appendChild(p);
   }
-  setTimeout(() => c.innerHTML='', 4000);
+  setTimeout(()=>c.innerHTML='',4000);
 }
-
-// ================================================================
-// TOAST / UTILS
-// ================================================================
-function showToast(msg, type='error') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show' + (type==='success' ? ' success' : type==='info' ? ' info' : '');
+function showToast(msg,type='error'){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.className='toast show'+(type==='success'?' success':type==='info'?' info':'');
   clearTimeout(t._to);
-  t._to = setTimeout(() => t.classList.remove('show'), 2500);
+  t._to=setTimeout(()=>t.classList.remove('show'),2500);
 }
-
-function getDiffLabel(d) {
-  return {
-    sho:'小学校',chu:'中学校',ko:'高校・大学',dai:'超難問',
+function getDiffLabel(d){
+  return{sho:'小学校',chu:'中学校',ko:'高校・大学',dai:'超難問',
     k10:'漢検10級',k9:'漢検9級',k8:'漢検8〜7級',k7:'漢検7〜6級',
-    k6:'漢検6〜5級',k4:'漢検4〜3級',k2:'漢検準2〜2級',k1:'漢検準1〜1級',all:'漢検総合'
-  }[d] || d;
+    k6:'漢検6〜5級',k4:'漢検4〜3級',k2:'漢検準2〜2級',k1:'漢検準1〜1級',all:'漢検総合'}[d]||d;
 }
 
 // ================================================================
 // BOOT
 // ================================================================
 initSocket();
-selFlip('random');
-selInt(2000);
-selRounds(7);
-buildDiffArea();
+selFlip('random'); selInt(2000); selRounds(7); buildDiffArea();
+selSoloFlip('random'); selSoloInt(2000); buildSoloDiffArea();
 </script>
 </body>
 </html>
