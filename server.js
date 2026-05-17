@@ -15,6 +15,9 @@ const io     = new Server(server, {
 // 静的ファイル配信
 app.use(express.static(path.join(__dirname, 'public')));
 
+// favicon の 404 を黙殺
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 // ── ルーム管理 ──────────────────────────────────────────────
 // rooms[roomCode] = {
 //   code, hostId, players: [{id, name, score, socketId}],

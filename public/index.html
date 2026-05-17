@@ -565,11 +565,11 @@ function doSoloRound() {
   if (s.quizType === 'kanji') {
     document.getElementById('kanji-grid-wrap').classList.remove('hidden');
     document.getElementById('multi-grids-outer').classList.add('hidden');
-    buildKanjiGrid();
+    buildKanjiGrid(word);                  // ソロ: 答えを渡す
   } else {
     document.getElementById('kanji-grid-wrap').classList.add('hidden');
     document.getElementById('multi-grids-outer').classList.remove('hidden');
-    buildMultiGrids(charList.length);
+    buildMultiGrids(charList.length, charList);  // ソロ: 文字リストを渡す
   }
 
   updateTimerUI();
@@ -829,13 +829,15 @@ function applyTileOpen(charIndex, tileIndex) {
 // ================================================================
 // GRID BUILDERS
 // ================================================================
-function buildKanjiGrid() {
+// answer: ソロ時は実際の文字列、オンライン時は undefined（'？'表示）
+function buildKanjiGrid(answer) {
   const g = document.getElementById('grid');
   g.innerHTML = '';
   for (let i = 0; i < 64; i++) g.appendChild(makeTile(i,'k'));
-  document.getElementById('hidden-kanji').textContent = '？';
+  document.getElementById('hidden-kanji').textContent = answer || '？';
 }
-function buildMultiGrids(n) {
+// charList: ソロ時は文字の配列、オンライン時は undefined（'？'表示）
+function buildMultiGrids(n, charList) {
   const row = document.getElementById('multi-grids-row');
   row.innerHTML = '';
   const pr  = document.getElementById('multi-progress');
@@ -843,6 +845,7 @@ function buildMultiGrids(n) {
   const maxW = Math.min(window.innerWidth-32,780);
   const size = Math.max(Math.min(Math.floor((maxW-(n-1)*8)/n),180),60);
   for (let ci = 0; ci < n; ci++) {
+    const ch = (charList && charList[ci]) ? charList[ci] : '？';
     const badge = document.createElement('div');
     badge.className = 'char-badge'; badge.id='cbadge-'+ci; badge.textContent='？';
     pr.appendChild(badge);
@@ -857,7 +860,8 @@ function buildMultiGrids(n) {
     const hid = document.createElement('div');
     hid.className='char-hidden';
     const hs=document.createElement('span');
-    hs.style.fontSize=Math.round(size*0.86)+'px'; hs.textContent='？';
+    hs.style.fontSize=Math.round(size*0.86)+'px';
+    hs.textContent = ch;  // ソロは実際の文字、オンラインは'？'
     hid.appendChild(hs); wrap.appendChild(hid);
     const grid=document.createElement('div');
     grid.className='char-grid-el'; grid.id='cgrid-'+ci;
